@@ -18,7 +18,7 @@ import AlertModal from "../modal/alertModal";
 
 const Success = ({ progress, user, setUser, handlePrevious, handleNext }: FormPropsType) => {
     const [open, setOpen] = useState(true);
-    console.log("user from api:", user)
+
     return (
         <div className="">
             <div className="container md:max-w-5xl w-full md:px-8 px-4 pt-5 pb-28 overflow-y-auto">

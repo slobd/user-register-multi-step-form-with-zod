@@ -7,6 +7,7 @@ import Success from "@/components/multistepForms/Success";
 import UserDetails from "@/components/multistepForms/UserDetails";
 import { UserType, MockResponseDataType } from "@/lib/types";
 import { defautlUser } from "@/lib/constants";
+import Axios from "axios";
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
@@ -22,21 +23,18 @@ export default function Home() {
   const handleNext = async () => {
     if (activeTab == formElementsCount - 2) {
       // call mock api
-      const response = await fetch('/api/mock', {
-        method: 'POST',
+      setLoading(true);
+      Axios.post('/api/mock', user, {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(user),
-      });
-      const res = await response.json();
-      console.log("res data", res)
-      if(res.message === "success") {
-        setUserFromAPI(res.data);
+      }).then(res => {
+        setUserFromAPI(res.data.user);
+        setLoading(false)
         activeTab < formElementsCount - 1 && setActiveTab(prev => prev + 1);
-      } else {
-        // if error
-      }
+      }).catch(err => {
+        setLoading(false)
+      })
 
     } else {
       activeTab < formElementsCount - 1 && setActiveTab(prev => prev + 1)

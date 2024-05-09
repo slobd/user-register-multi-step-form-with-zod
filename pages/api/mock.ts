@@ -10,7 +10,7 @@ export default function handler(
     } else if (req.method === 'POST') {
         res.status(201).json({
             message: "success",
-            data: req.body
+            user: req.body
         });
     } else {
         res.status(405).json({ message: 'Method not allowed' });
