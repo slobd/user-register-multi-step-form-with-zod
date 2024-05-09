@@ -34,7 +34,10 @@ const formSchema = z.object({
     confirmPassword: z.string().min(1, {
         message: "Please confirm password.",
     })
-})
+}).refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords don't match",
+    path: ["confirmPassword"],
+});
 
 const UserDetails = ({ progress, user, setUser, handlePrevious, handleNext }: FormPropsType) => {
     const form = useForm<z.infer<typeof formSchema>>({
@@ -49,15 +52,6 @@ const UserDetails = ({ progress, user, setUser, handlePrevious, handleNext }: Fo
     })
 
     const onSubmit = (values: z.infer<typeof formSchema>) => {
-        // confirm password
-        if (values.password !== values.confirmPassword) {
-            form.setError("confirmPassword", {
-                type: "manual",
-                message: "Passwords do not match.",
-            });
-            return;
-        }
-
         setUser({
             ...user,
             ...values,
