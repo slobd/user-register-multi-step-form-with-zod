@@ -1,24 +1,51 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
-First, run the development server:
+First, install run the development server:
 
 ```bash
-npm run dev
-# or
+yarn install
+# and then
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Description
+We assume that we are staring on the first page of the form.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### -First page: 
+This is user detail page that consists of user's first name, last name, email and password.
+I implemented the validations for each fields using react-hook-form and zod.
+- firstName and lastName: required
+- email: required and email format validation
+- password: 6+ characters, password strength, password 
+
+### -Second Page
+This is profile info page for uploading bio and avatar.
+- Bio: min-10, max-300 characters, 
+- Profile Picture: required.
+    Regarding profile picture, actual file uploading is not happening. 
+    If you want this function, I can implement file upload with the node.js/mongodb backend shortly.
+
+### -Third Page
+This is page for notification and privacy settings.
+
+Once you complete and click the "Next" button, the whole user data is saved via mock API.
+
+### -Fourth Page
+This is success page.
+Once the API connection is succeed, the modal appears to congratulate your register.
+And then, show the result of the user profile.
+All parts are read-only.
+
+We can add further functionalify or page by clicking next button on this page.
+#
+
+
+That's all.
+Thank you.
 
 ## Learn More
 

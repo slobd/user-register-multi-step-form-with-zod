@@ -29,9 +29,15 @@ export default function Home() {
         },
         body: JSON.stringify(user),
       });
-      const data = await response.json();
-      setUserFromAPI(data);
-      activeTab < formElementsCount - 1 && setActiveTab(prev => prev + 1);
+      const res = await response.json();
+      console.log("res data", res)
+      if(res.message === "success") {
+        setUserFromAPI(res.data);
+        activeTab < formElementsCount - 1 && setActiveTab(prev => prev + 1);
+      } else {
+        // if error
+      }
+
     } else {
       activeTab < formElementsCount - 1 && setActiveTab(prev => prev + 1)
     }

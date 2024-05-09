@@ -8,7 +8,10 @@ export default function handler(
     if (req.method === 'GET') {
         res.status(200).json({ message: "Good!" });
     } else if (req.method === 'POST') {
-        res.status(201).json(req.body);
+        res.status(201).json({
+            message: "success",
+            data: req.body
+        });
     } else {
         res.status(405).json({ message: 'Method not allowed' });
     }
